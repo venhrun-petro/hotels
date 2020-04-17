@@ -20,8 +20,8 @@ module.exports = {
         name: `hospitality`,
         short_name: `hospitality`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#ff0000`,
+        theme_color: `#ff0000`,
         display: `minimal-ui`
       }
     },

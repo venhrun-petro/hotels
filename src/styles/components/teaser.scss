@@ -77,6 +77,8 @@
                 @include xs {
                     border-radius: 20px;
                     max-width: max-content;
+                    min-width: 185px;
+                    box-sizing: border-box;
                 }
                 &:first-child{
                     padding: 0 20px 0 0;

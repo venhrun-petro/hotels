@@ -22,7 +22,7 @@ export class MapCont extends React.Component {
       >
         <Marker
           onClick={this.onMarkerClick}
-          title="Volter Hotels"
+          title="Volter"
           name="Volter"
           position={{ lat: 49.86472298385324, lng: 24.050930595874682 }}
         />

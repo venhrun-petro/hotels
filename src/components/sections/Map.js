@@ -22,7 +22,7 @@ export class MapCont extends React.Component {
       >
         <Marker
           onClick={this.onMarkerClick}
-          title="Volter"
+          title="Volter Hotels"
           name="Volter"
           position={{ lat: 49.86472298385324, lng: 24.050930595874682 }}
         />
@@ -32,5 +32,5 @@ export class MapCont extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyDZZspKs5RpgXerC3ZuzjXSfBfTQ4pcWb4'
+  apiKey: 'AIzaSyDz1UtGGJQ-P9H_5DYWzNUprNEzwZPsJPo'
 })(MapCont)

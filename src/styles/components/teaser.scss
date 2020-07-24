@@ -29,7 +29,6 @@
             text-align: center;
             font-size: 48px;
             line-height: 66px;
-            text-align: center;
             font-weight: 800;
             @include sm {
                 font-size: 22px;
@@ -171,10 +170,6 @@
                             cursor: pointer;
                             &::-webkit-inner-spin-button { display: none; }
                             &::-webkit-calendar-picker-indicator { 
-                                // background: url('./../../static/icons/arrow.svg') no-repeat;
-                                // background-position: center bottom;
-                                // background-color: transparent;
-                                // background-size: contain;
                                 background: transparent;
                                 color: transparent;
                                 font-size: 8px;
@@ -232,6 +227,35 @@
                             margin-right: 5px;
                         }
                     }
+                }
+            }
+        }
+        &_thanks{
+            display: flex;
+            justify-content: center;
+            background-color: $color-white;
+            padding: 17px 16px;
+            border-radius: 20px;
+            @include sm {
+                display: inline-block;
+                margin: 0 auto;
+                min-width: 400px;
+            }
+            @include xsl {
+                min-width: 100%;
+                box-sizing: border-box;
+            }
+            &_title{
+                display: block;
+                color: $color-red;
+                text-align: center;
+                font-size: 48px;
+                line-height: 67px;
+                font-weight: 800;
+                margin: 0;
+                @include sm {
+                    font-size: 22px;
+                    line-height: 30px;
                 }
             }
         }

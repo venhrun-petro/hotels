@@ -1,41 +1,76 @@
+let path = require('path');
+
 module.exports = {
   siteMetadata: {
-    title: `hospitality-apps`
+    title: `Hospitality-core`,
+    description: `gatsby-hospitality-core`,
+    author: `gatsby-hospitality-core`,
   },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `./static`
-      }
+        name: `/images`,
+        path: `${__dirname}/static/`,
+      },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    'gatsby-transformer-json',
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: "pages",
+      },
+    },
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/src/templates`,
+        name: "templates",
+      },
+    },
     `gatsby-plugin-sass`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `hospitality`,
-        short_name: `hospitality`,
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
         start_url: `/`,
-        background_color: `#F44767`,
-        theme_color: `#F44767`,
-        display: `minimal-ui`
-      }
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `${__dirname}/static/icons/favicon.png`,
+      },
     },
-    'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-i18n",
       options: {
-        name: 'hospitality-apps.com',
-        short_name: 'hospitality-apps',
-        start_url: '/',
-        background_color: '#fff',
-        theme_color: '#fff',
-        display: 'minimal-ui',
-        icon: 'static/icons/favicon.png'
+        langKeyForNull: `uk`,
+        langKeyDefault: `uk`,
+        useLangKeyLayout: false,
+        prefixDefault: false,
+      },
+    },
+    {
+      resolve: `gatsby-alias-imports`,
+      options: {
+        aliases: {
+          '~': path.resolve(__dirname, 'src'),
+          '~c': path.resolve(__dirname, 'src/components'),
+          '~p': path.resolve(__dirname, 'src/pages'),
+          '~s': path.resolve(__dirname, 'src/store'),
+          '~d': path.resolve(__dirname, 'content'),
+          '~r': path.resolve(__dirname, 'src/redux'),
+          '~h': path.resolve(__dirname, 'src/hooks'),
+          '~style': path.resolve(__dirname, 'src/styles'),
+          '~f': path.resolve(__dirname, 'src/fonts'),
+          '~img': path.resolve(__dirname, 'static/images'),
+          '~ic': path.resolve(__dirname, 'static/icons')
+        }
       }
     }
   ]

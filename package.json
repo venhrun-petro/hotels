@@ -1,87 +1,50 @@
 {
-  "name": "hospitality-apps",
-  "version": "1.0.0",
-  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
-  "author": "Andriy Leliv",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/pozitiff/hospitality-apps#readme",
+  "name": "gatsby-hospitality-core",
+  "description": "gatsby-hospitality-core",
+  "version": "0.1.15",
+  "author": "gatsby-hospitality-core",
+  "dependencies": {
+    "@types/react-redux": "^7.1.9",
+    "gatsby": "^2.23.0",
+    "gatsby-alias-imports": "^1.0.4",
+    "gatsby-plugin-i18n": "^1.0.1",
+    "gatsby-plugin-manifest": "^2.4.10",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-react-helmet": "^3.3.3",
+    "gatsby-plugin-sass": "^2.3.3",
+    "gatsby-plugin-sharp": "^2.6.10",
+    "gatsby-source-filesystem": "^2.3.10",
+    "gatsby-transformer-remark": "^2.8.14",
+    "gatsby-transformer-sharp": "^2.5.4",
+    "google-maps-react": "^2.0.6",
+    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.2.0",
+    "react-responsive": "^8.1.0",
+    "react-scroll": "^1.7.16",
+    "react-slick": "^0.26.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.0"
+  },
+  "keywords": [
+    "gatsby",
+    "Hospitality-apps",
+    "i18n"
+  ],
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
-    "styleLint": "stylelint .",
-    "styleLint-fix": "stylelint . --fix",
-    "prettier": "prettier --write src/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/pozitiff/hospitality-apps.git"
-  },
-  "dependencies": {
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react-hooks": "^2.5.0",
-    "gatsby": "^2.19.7",
-    "gatsby-image": "^2.2.43",
-    "gatsby-plugin-manifest": "^2.2.47",
-    "gatsby-plugin-offline": "^3.0.32",
-    "gatsby-plugin-react-helmet": "^3.1.23",
-    "gatsby-plugin-sass": "^2.1.30",
-    "gatsby-plugin-sharp": "^2.4.12",
-    "gatsby-source-filesystem": "^2.1.46",
-    "gatsby-transformer-json": "^2.2.27",
-    "gatsby-transformer-sharp": "^2.3.18",
-    "google-maps-react": "^2.0.2",
-    "install": "^0.13.0",
-    "node-sass": "^4.13.1",
-    "npm": "^6.14.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^5.2.1",
-    "react-responsive": "^8.0.3",
-    "react-router-dom": "^5.1.2",
-    "react-router-hash-link": "^1.2.2",
-    "react-scroll": "^1.7.16",
-    "react-slick": "^0.25.2",
-    "sass": "^1.26.2",
-    "sharp": "^0.25.1",
-    "sharp-cli": "^1.13.1",
-    "slick-carousel": "^1.8.1",
-    "stylelint": "^13.2.0",
-    "stylelint-config-standard": "^20.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3",
-    "husky": "^4.2.3",
-    "jest": "^25.1.0",
-    "lint-staged": "^10.0.8",
-    "prettier": "^1.19.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ],
-    "*.scss": [
-      "stylelint --fix"
-    ]
-  },
-  "keywords": [
-    "hospitality"
-  ]
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  }
 }

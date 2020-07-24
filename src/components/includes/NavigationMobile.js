@@ -3,60 +3,56 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/destructuring-assignment */
-import React from 'react'
-import { Link, animateScroll as scroll } from 'react-scroll'
+import React, { useState } from 'react'
+import { Link } from "gatsby"
 import MediaQuery from 'react-responsive'
-import GeneralNavigation from './GeneralNavigation'
-import JSONData from '../../../content/header.json'
+import GeneralNavigation from '~c/includes/GeneralNavigation'
+import Img from '~c/general/Image'
+import content_EN from '~d/en/header.json'
+import content_UK from '~d/uk/header.json'
+import { useSelector } from 'react-redux'
 
-export default class NavigationMobile extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      displayMenu: false
-    }
-    this.showDropdownMenu = this.showDropdownMenu.bind(this)
-  }
 
-  scrollToTop = () => {
-    scroll.scrollToTop()
-  }
+function NavigationMobile() {
+  const [displayMenu, setdDisplayMenu] = useState(false);
 
-  showDropdownMenu(event) {
-    event.preventDefault()
-    !this.state.displayMenu
-      ? this.setState({ displayMenu: true })
-      : this.setState({ displayMenu: false })
-  }
+  const showDropdownMenu = () => {
+    !displayMenu
+      ? setdDisplayMenu(true)
+      : setdDisplayMenu(false)
+  }   
 
-  render() {
-    return (
-      <MediaQuery maxDeviceWidth={767.97}>
+  const state = useSelector(props => props);
+  let content = (state.languageValue === "uk" ? content_UK : content_EN);  
+
+  return(
+    <>
+    <MediaQuery maxDeviceWidth={767.97}>
         <header className="header">
           <div className="container">
             <nav className="navigation">
               <Link
-                to="/"
+                to={`/${state.languageValue === "uk" ? "" : state.languageValue}`}
                 className="navigation_logo"
-                onClick={this.scrollToTop}
               >
-                <img
-                  src={JSONData.logo}
-                  alt="brand-logo"
+                <Img
+                  src={content.logo}
                   className="navigation_logo_img"
                 />
               </Link>
-              {this.state.displayMenu ? <GeneralNavigation /> : null}
-              <div className="burger" onClick={this.showDropdownMenu}>
-                <span />
-                <span />
-                <span />
-                <span />
+              {displayMenu ? <GeneralNavigation /> : null}
+              <div className="burger" onClick={showDropdownMenu}>
+                  <span />
+                  <span />
+                  <span />
+                  <span />
               </div>
             </nav>
           </div>
         </header>
       </MediaQuery>
-    )
-  }
+    </>
+  )
 }
+
+export default NavigationMobile

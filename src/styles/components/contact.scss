@@ -47,6 +47,7 @@
             }
             &_items{
                 &_link{
+                    display: inline-block;
                     margin-right: 30px;
                     cursor: pointer;
                 }
@@ -119,8 +120,8 @@
                 height: 35px;
                 font-size: 24px;
                 background-color: $color-white ;
-                -webkit-mask: url(./../../static/icons/map.svg) no-repeat center;
-                mask: url(./../../static/icons/map.svg) no-repeat center;
+                -webkit-mask: url(./../../static/icons/maps.svg) no-repeat center;
+                mask: url(./../../static/icons/maps.svg) no-repeat center;
                 transition: 0.3s all;
             }
             &:hover{

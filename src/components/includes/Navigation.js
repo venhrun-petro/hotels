@@ -1,39 +1,36 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-unreachable */
-/* eslint-disable no-unused-expressions */
-import React from 'react'
-import { Link, animateScroll as scroll } from 'react-scroll'
+import React from "react"
+import { Link } from "gatsby"
 import MediaQuery from 'react-responsive'
-import JSONData from '../../../content/header.json'
-import GeneralNavigation from './GeneralNavigation'
+import GeneralNavigation from '~c/includes/GeneralNavigation'
+import content_EN from '~d/en/header.json'
+import content_UK from '~d/uk/header.json'
+import { useSelector } from 'react-redux'
+import Img from '~c/general/Image'
 
-export default class Navigation extends React.Component {
-  scrollToTop = () => {
-    scroll.scrollToTop()
-  }
+function Navigation() {
+  const state = useSelector(props => props);
+  let content = (state.languageValue === "uk" ? content_UK : content_EN);  
 
-  render() {
-    return (
-      <MediaQuery minDeviceWidth={767.97}>
-        <header className="header">
-          <div className="container">
-            <nav className="navigation">
-              <Link
-                to="#about"
-                className="navigation_logo"
-                onClick={this.scrollToTop}
-              >
-                <img
-                  src={JSONData.logo}
-                  alt="brand-logo"
-                  className="navigation_logo_img"
-                />
-              </Link>
-              <GeneralNavigation />
-            </nav>
-          </div>
-        </header>
-      </MediaQuery>
-    )
-  }
+  return (
+    <MediaQuery minDeviceWidth={767.97}>
+      <header className="header">
+        <div className="container">
+          <nav className="navigation">
+            <Link
+              to={`/${state.languageValue === "uk" ? "" : state.languageValue}`}
+              className="navigation_logo"
+            >
+              <Img
+                src={content.logo}
+                className="navigation_logo_img"
+              />
+            </Link>
+            <GeneralNavigation />
+          </nav>
+        </div>
+      </header>
+    </MediaQuery>
+  )
 }
+
+export default Navigation

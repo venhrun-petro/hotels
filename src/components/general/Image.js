@@ -23,7 +23,7 @@ const checkName = (src) => {
 const Image = ({ src, className }) => {
   const images = useImagesQuery()
   const imageName = checkName(src).split(/\.(?=[^\.]+$)/)[0]
-  
+  console.log(setImageObject(images, imageName).publicURL)
   return (
       <img src={
         checkImg(images, imageName) ?

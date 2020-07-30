@@ -40,6 +40,10 @@ function SEO({ description, lang, meta, keywords, title }) {
           content: metaDescription,
         },
         {
+          name: `referrer`,
+          content: "origin",
+        },
+        {
           property: `og:title`,
           content: title,
         },

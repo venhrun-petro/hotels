@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import content_EN from '~d/en/content.json'
 import content_UK from '~d/uk/content.json'
 import Img from '~c/general/Image'
-
+import axios from 'axios';
 
 export default class Form extends React.Component {
   // eslint-disable-next-line react/state-in-constructor
@@ -41,6 +41,44 @@ export default class Form extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     this.setState({submit: true})
+
+    let discordData = {};
+    discordData.username = "testName";
+    discordData.embeds = [{
+      'fields': [
+        {
+          "name": "**Data start:** ",
+          "value": this.state.number.value,
+          "inline": false
+        },
+        {
+          "name": "**Data end:** ",
+          "value": this.state.months.value,
+          "inlise": false
+        },
+        {
+          "name": "**Number guest:** ",
+          "value": this.state.guest.value,
+          "inline": false
+        }
+      ],
+      "title": "New Message Received :incoming_envelope:"
+    }];
+    discordData.content = "content";
+    let jsonString = JSON.stringify(discordData, null, 2);
+
+    axios ({
+      method: 'post',
+      url: 'https://discordapp.com/api/webhooks/738380509607886888/-lhApQTnFKEnJ9zXUQg4GYu6fjcaG9iku4EgPUKCTQFP73xnoSGhK-llGoDyk0W7zWmz',
+      data: jsonString,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   }
 
   render() {

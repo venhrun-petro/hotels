@@ -66,7 +66,7 @@ export default class Form extends React.Component {
     }];
     discordData.content = "content";
     discordData.message = 'message';
-    let jsonString = JSON.stringify(discordData, null, 2);
+    let jsonString = JSON.stringify(discordData);
 
     axios ({
       method: 'post',

@@ -40,10 +40,10 @@ export default class Form extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.setState({submit: true})
+    // this.setState({submit: true})
 
     let discordData = {};
-    discordData.username = "testName";
+    discordData.username = "Pv - Petro Venhryn";
     discordData.embeds = [{
       'fields': [
         {
@@ -65,10 +65,11 @@ export default class Form extends React.Component {
       "title": "New Message Received :incoming_envelope:"
     }];
     discordData.content = "content";
+    discordData.message = 'message';
     let jsonString = JSON.stringify(discordData, null, 2);
 
     axios ({
-      method: 'post',
+      method: 'get',
       url: 'https://discordapp.com/api/webhooks/738380509607886888/-lhApQTnFKEnJ9zXUQg4GYu6fjcaG9iku4EgPUKCTQFP73xnoSGhK-llGoDyk0W7zWmz',
       data: jsonString,
     })
@@ -86,7 +87,7 @@ export default class Form extends React.Component {
     return (
       <>
         {!this.state.submit ?
-          <form className="teaser_cont_form-normal" onSubmit={this.handleSubmit} >
+          <form method="GET" className="teaser_cont_form-normal" onSubmit={this.handleSubmit} >
             <div className="teaser_cont_form-normal_block">
               <label className="teaser_cont_form-normal_block_data">
                 <span>

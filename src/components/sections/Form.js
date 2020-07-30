@@ -69,7 +69,7 @@ export default class Form extends React.Component {
     let jsonString = JSON.stringify(discordData, null, 2);
 
     axios ({
-      method: 'get',
+      method: 'post',
       url: 'https://discordapp.com/api/webhooks/738380509607886888/-lhApQTnFKEnJ9zXUQg4GYu6fjcaG9iku4EgPUKCTQFP73xnoSGhK-llGoDyk0W7zWmz',
       data: jsonString,
     })
@@ -87,7 +87,7 @@ export default class Form extends React.Component {
     return (
       <>
         {!this.state.submit ?
-          <form method="GET" className="teaser_cont_form-normal" onSubmit={this.handleSubmit} >
+          <form className="teaser_cont_form-normal" onSubmit={this.handleSubmit} >
             <div className="teaser_cont_form-normal_block">
               <label className="teaser_cont_form-normal_block_data">
                 <span>

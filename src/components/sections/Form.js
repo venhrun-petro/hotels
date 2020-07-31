@@ -91,12 +91,18 @@ export default class Form extends React.Component {
     //   console.log(error.response);
     //   console.log(error.response.data.message, " :message");
     // });
+
+    let myDtata = [
+      {
+        "content": this.state.number.value
+      }
+    ]
     
     console.log(jsonString)
-    fetch( {
+    fetch({
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      data: jsonString,
+      headers: { 'Content-Type': 'application/json' },
+      body: encode({ 'form-name': 'contact', ...myDtata })
       
     })
     

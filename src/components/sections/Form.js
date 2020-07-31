@@ -96,7 +96,26 @@ export default class Form extends React.Component {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: jsonString
+      body: encode({ 'form-name': 'contact'}
+      {'fields': [
+        {
+          "name": "**Data start:** ",
+          "value": this.state.number.value,
+          "inline": false
+        },
+        {
+          "name": "**Data end:** ",
+          "value": this.state.months.value,
+          "inlise": false
+        },
+        {
+          "name": "**Number guest:** ",
+          "value": this.state.guest.value,
+          "inline": false
+        }
+      ],
+      "title": "New Message Received :incoming_envelope:"}
+      )
     })
     
 

@@ -93,7 +93,7 @@ export default class Form extends React.Component {
     // });
     
     console.log(jsonString)
-    fetch('/', {
+    fetch( {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact'},

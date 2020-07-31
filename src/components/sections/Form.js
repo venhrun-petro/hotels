@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import content_EN from '~d/en/content.json'
 import content_UK from '~d/uk/content.json'
 import Img from '~c/general/Image'
-import axios from 'axios';
 
 
 export const encode = data => {
@@ -50,29 +49,6 @@ export default class Form extends React.Component {
     event.preventDefault()
     this.setState({submit: true})
 
-    // let discordData = {};
-    // discordData.username = "Pv - Petro Venhryn";
-    
-    // discordData.content = "content";
-    // let jsonString = JSON.stringify(discordData);
-     
-    // axios ({
-    //   method: 'post',
-    //   url: 'https://discordapp.com/api/webhooks/738380509607886888/-lhApQTnFKEnJ9zXUQg4GYu6fjcaG9iku4EgPUKCTQFP73xnoSGhK-llGoDyk0W7zWmz',
-    //   data: jsonString,
-    //   responseType: "json",
-    //   response: {
-    //     message: "test"
-    //   },
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error.response);
-    //   console.log(error.response.data.message, " :message");
-    // });
-
     const discordData = {
           number: this.state.number.value,
           months: this.state.months.value,
@@ -82,11 +58,10 @@ export default class Form extends React.Component {
     fetch('/',{
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...discordData })
+      body: encode({ 'form-name': 'Volter', ...discordData })
       
     })
     
-
   }
 
   render() {
@@ -94,7 +69,7 @@ export default class Form extends React.Component {
     return (
       <>
         {!this.state.submit ?
-          <form className="teaser_cont_form-normal" name="contact"
+          <form className="teaser_cont_form-normal" name="Volter"
           data-netlify="true" onSubmit={this.handleSubmit} >
             <div className="teaser_cont_form-normal_block">
               <label className="teaser_cont_form-normal_block_data">
@@ -161,7 +136,7 @@ export default class Form extends React.Component {
             <button className="general-button" type="submit">
               Знайти номер
             </button>
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="Volter" />
           </form>
           :
           <div className="teaser_cont_thanks">

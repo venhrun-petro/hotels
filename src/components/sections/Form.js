@@ -109,6 +109,7 @@ export default class Form extends React.Component {
         {!this.state.submit ?
           <form className="teaser_cont_form-normal" name="contact"
           data-netlify="true" onSubmit={this.handleSubmit} >
+            <input type="hidden" name="form-name" value="contact" />
             <div className="teaser_cont_form-normal_block">
               <label className="teaser_cont_form-normal_block_data">
                 <span>
@@ -174,7 +175,6 @@ export default class Form extends React.Component {
             <button className="general-button" type="submit">
               Знайти номер
             </button>
-            <input type="hidden" name="form-name" value="contact" />
           </form>
           :
           <div className="teaser_cont_thanks">

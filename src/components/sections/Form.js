@@ -95,7 +95,7 @@ export default class Form extends React.Component {
     console.log(jsonString)
     fetch( {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       data: jsonString,
       
     })

@@ -50,30 +50,11 @@ export default class Form extends React.Component {
     event.preventDefault()
     this.setState({submit: true})
 
-    let discordData = {};
-    discordData.username = "Pv - Petro Venhryn";
-    discordData.embeds = [{
-      'fields': [
-        {
-          "name": "**Data start:** ",
-          "value": this.state.number.value,
-          "inline": false
-        },
-        {
-          "name": "**Data end:** ",
-          "value": this.state.months.value,
-          "inlise": false
-        },
-        {
-          "name": "**Number guest:** ",
-          "value": this.state.guest.value,
-          "inline": false
-        }
-      ],
-      "title": "New Message Received :incoming_envelope:"
-    }];
-    discordData.content = "content";
-    let jsonString = JSON.stringify(discordData);
+    // let discordData = {};
+    // discordData.username = "Pv - Petro Venhryn";
+    
+    // discordData.content = "content";
+    // let jsonString = JSON.stringify(discordData);
      
     // axios ({
     //   method: 'post',
@@ -92,12 +73,16 @@ export default class Form extends React.Component {
     //   console.log(error.response.data.message, " :message");
     // });
 
+    const discordData = {
+          number: this.state.number.value,
+          months: this.state.months.value,
+          guest: this.state.guest.value
+    };
     
-    console.log(jsonString)
     fetch('/',{
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', "value": this.state.guest.value })
+      body: encode({ 'form-name': 'contact', ...discordData })
       
     })
     

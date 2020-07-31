@@ -65,20 +65,33 @@ export default class Form extends React.Component {
       "title": "New Message Received :incoming_envelope:"
     }];
     discordData.content = "content";
-    discordData.message = 'message';
     let jsonString = JSON.stringify(discordData);
+     
+    // axios ({
+    //   method: 'post',
+    //   url: 'https://discordapp.com/api/webhooks/738380509607886888/-lhApQTnFKEnJ9zXUQg4GYu6fjcaG9iku4EgPUKCTQFP73xnoSGhK-llGoDyk0W7zWmz',
+    //   data: jsonString,
+    //   responseType: "json",
+    //   response: {
+    //     message: "test"
+    //   },
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error.response);
+    //   console.log(error.response.data.message, " :message");
+    // });
 
-    axios ({
-      method: 'post',
-      url: 'https://discordapp.com/api/webhooks/738380509607886888/-lhApQTnFKEnJ9zXUQg4GYu6fjcaG9iku4EgPUKCTQFP73xnoSGhK-llGoDyk0W7zWmz',
-      data: jsonString,
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', jsonString })
+    }).then(() => {
+      setSuccessState(true)
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    
 
   }
 
@@ -87,7 +100,9 @@ export default class Form extends React.Component {
     return (
       <>
         {!this.state.submit ?
-          <form className="teaser_cont_form-normal" onSubmit={this.handleSubmit} >
+          <form className="teaser_cont_form-normal" name="contact"
+          data-netlify="true" onSubmit={this.handleSubmit} >
+            <input type="hidden" name="form-name" value="contact" />
             <div className="teaser_cont_form-normal_block">
               <label className="teaser_cont_form-normal_block_data">
                 <span>

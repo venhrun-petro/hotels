@@ -4,6 +4,14 @@ import content_UK from '~d/uk/content.json'
 import Img from '~c/general/Image'
 import axios from 'axios';
 
+
+export const encode = data => {
+  return Object.keys(data)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&')
+}
+
+
 export default class Form extends React.Component {
   // eslint-disable-next-line react/state-in-constructor
   state = {
@@ -83,13 +91,12 @@ export default class Form extends React.Component {
     //   console.log(error.response);
     //   console.log(error.response.data.message, " :message");
     // });
+    
 
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', jsonString })
-    }).then(() => {
-      setSuccessState(true)
     })
     
 

@@ -4,14 +4,13 @@
 import React from 'react'
 import { Link } from 'react-scroll'
 import { Link as LinkPage } from "gatsby"
-import content_EN from '~d/en/header.json'
-import content_UK from '~d/uk/header.json'
+import { useStaticQuery, graphql } from 'gatsby'
+import Content from "~u/Content"
 import { useSelector } from 'react-redux'
 
 const GeneralNavigation = () => {
-
-  const state = useSelector(props => props);
-  let content = (state.languageValue === "uk" ? content_UK : content_EN);
+  const state = useSelector(props => props); 
+  const content = Content(useGeneralNavigationQuery())
 
   return (
     <div className="navigation_menu">
@@ -56,3 +55,26 @@ const GeneralNavigation = () => {
 
 
 export default GeneralNavigation
+
+export const useGeneralNavigationQuery = () =>
+  useStaticQuery(graphql`
+    query GeneralNavigationQuery {
+      allFile(filter: {name: {eq: "header"}}) {
+        nodes {
+          childEnJson {
+            list {
+              item
+              src
+            }
+          }
+          childUkJson {
+            list {
+              item
+              src
+            }
+          }
+          sourceInstanceName
+        }
+      }
+    }
+  `).allFile.nodes

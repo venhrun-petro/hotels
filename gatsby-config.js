@@ -14,6 +14,21 @@ module.exports = {
         path: `${__dirname}/static/`,
       },
     },
+    `gatsby-transformer-json`,
+     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `uk`,
+        path: `${__dirname}/content/uk/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `en`,
+        path: `${__dirname}/content/en/`,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-source-filesystem",
@@ -66,6 +81,7 @@ module.exports = {
           '~d': path.resolve(__dirname, 'content'),
           '~r': path.resolve(__dirname, 'src/redux'),
           '~h': path.resolve(__dirname, 'src/hooks'),
+          '~u': path.resolve(__dirname, 'src/utils'),
           '~style': path.resolve(__dirname, 'src/styles'),
           '~f': path.resolve(__dirname, 'src/fonts'),
           '~img': path.resolve(__dirname, 'static/images'),

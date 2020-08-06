@@ -1,15 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import Map from './Map'
-import content_EN from '~d/en/content.json'
-import content_UK from '~d/uk/content.json'
-import { useSelector } from 'react-redux'
+import { useStaticQuery, graphql } from 'gatsby'
+import Content from "~u/Content"
 import Img from '~c/general/Image'
 
 // eslint-disable-next-line react/react-in-jsx-scope
 const Contact = () => {
-  const state = useSelector(props => props);
-  let content = (state.languageValue === "uk" ? content_UK : content_EN);
+  const content = Content(useContactQuery())
+
   return (
     <section className="contact" id="contact">
       <Img className="contact_img" src={content.mapImage} />
@@ -61,3 +60,28 @@ const Contact = () => {
 
 export default Contact
 
+
+export const useContactQuery = () =>
+  useStaticQuery(graphql`
+    query ContactQuery {
+      allFile(filter: {name: {eq: "content"}}) {
+        nodes {
+          childEnJson {
+            mapImage
+            contactSoz {
+              img
+              src
+            }
+          }
+          childUkJson {
+            mapImage
+            contactSoz {
+              img
+              src
+            }
+          }
+          sourceInstanceName
+        }
+      }
+    }
+  `).allFile.nodes

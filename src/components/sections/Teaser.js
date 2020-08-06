@@ -1,15 +1,13 @@
 import React from 'react'
 import Form from '~c/sections/Form'
-import content_EN from '~d/en/content.json'
-import content_UK from '~d/uk/content.json'
-import { useSelector } from 'react-redux'
 import Img from '~c/general/Image'
+import { useStaticQuery, graphql } from 'gatsby'
+import Content from "~u/Content"
 
 // eslint-disable-next-line react/react-in-jsx-scope
 // eslint-disable-next-line react/prefer-stateless-function
 const Teaser = () => {
-  const state = useSelector(props => props);
-  let content = (state.languageValue === "uk" ? content_UK : content_EN);
+  const content = Content(useDataQuery())
   return (
     <section className="teaser">
       <Img className="teaser_img" src={content.teaserImage} />
@@ -30,3 +28,25 @@ const Teaser = () => {
 
 
 export default Teaser
+
+
+export const useDataQuery = () =>
+  useStaticQuery(graphql`
+    query DataQuery {
+      allFile(filter: {name: {eq: "content"}}) {
+        nodes {
+          childEnJson {
+            title
+            teaserImage
+            subTitle
+          }
+          childUkJson {
+            title
+            teaserImage
+            subTitle
+          }
+          sourceInstanceName
+        }
+      }
+    }
+  `).allFile.nodes

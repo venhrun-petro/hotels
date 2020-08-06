@@ -8,8 +8,8 @@ import { Link } from "gatsby"
 import MediaQuery from 'react-responsive'
 import GeneralNavigation from '~c/includes/GeneralNavigation'
 import Img from '~c/general/Image'
-import content_EN from '~d/en/header.json'
-import content_UK from '~d/uk/header.json'
+import Content from "~u/Content"
+import { useStaticQuery, graphql } from 'gatsby'
 import { useSelector } from 'react-redux'
 
 
@@ -23,7 +23,7 @@ function NavigationMobile() {
   }   
 
   const state = useSelector(props => props);
-  let content = (state.languageValue === "uk" ? content_UK : content_EN);  
+  const content = Content(useNavigationMobailQuery())  
 
   return(
     <>
@@ -56,3 +56,20 @@ function NavigationMobile() {
 }
 
 export default NavigationMobile
+
+export const useNavigationMobailQuery = () =>
+useStaticQuery(graphql`
+  query NavigationMobailQuery {
+    allFile(filter: {name: {eq: "header"}}) {
+      nodes {
+        childEnJson {
+          logo
+        }
+        childUkJson {
+          logo
+        }
+        sourceInstanceName
+      }
+    }
+  }
+`).allFile.nodes

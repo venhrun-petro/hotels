@@ -3,15 +3,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import Slider from 'react-slick'
-import content_EN from '~d/en/content.json'
-import content_UK from '~d/uk/content.json'
-import { useSelector } from 'react-redux'
+import { useStaticQuery, graphql } from 'gatsby'
+import Content from "~u/Content"
 import Img from '~c/general/Image'
 
 // eslint-disable-next-line react/prefer-stateless-function
 const About = () => {
-  const state = useSelector(props => props);
-  let content = (state.languageValue === "uk" ? content_UK : content_EN);
+  const content = Content(useAboutQuery())
 
   const settings = {
     dots: true,
@@ -121,3 +119,35 @@ const About = () => {
 }
 
 export default About
+
+
+export const useAboutQuery = () =>
+  useStaticQuery(graphql`
+    query AboutQuery {
+      allFile(filter: {name: {eq: "content"}}) {
+        nodes {
+          childEnJson {
+            aboutImage
+            galleryAbout {
+              img
+            }
+            galleryServices {
+              img
+              info
+            }
+          }
+          childUkJson {
+            aboutImage
+            galleryAbout {
+              img
+            }
+            galleryServices {
+              img
+              info
+            }
+          }
+          sourceInstanceName
+        }
+      }
+    }
+  `).allFile.nodes

@@ -62,6 +62,10 @@ Hospitality-core
    │       └── reducer.js    
    │       └── store.js    
    │       └── wrapProvider.js  
+   │   └── utils
+   │       └── Content.js   
+   │       └── data.js  
+   │       └── helpers.js  
    │   └── styles
    │       └── mains.scss
    |           └── *
@@ -86,6 +90,7 @@ Gatsby:
    ├── gatsby-plugin-sass
    ├── gatsby-plugin-sharp   
    ├── gatsby-source-filesystem
+   ├── gatsby-transformer-json
    ├── gatsby-transformer-remark
    ├── gatsby-transformer-sharp
 ```
@@ -104,6 +109,7 @@ Another:
    ├── react-slick
    ├── redux
    ├── redux-devtools-extension
+   ├── @types/react-redux
 ```
 
 ### Please use the next alias
@@ -114,6 +120,7 @@ Another:
     '~d'    : path.resolve(__dirname, 'content'),
     '~r'    : path.resolve(__dirname, 'src/redux'),
     '~h'    : path.resolve(__dirname, 'src/hooks'),
+    '~u'    : path.resolve(__dirname, 'src/utils'),
     '~style': path.resolve(__dirname, 'src/styles'),
     '~f'    : path.resolve(__dirname, 'src/fonts'),
     '~img'  : path.resolve(__dirname, 'static/images'),

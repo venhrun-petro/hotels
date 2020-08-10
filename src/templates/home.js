@@ -5,6 +5,7 @@ import Layout from "~c/layout/layout"
 import SEO from "~c/includes/seo"
 import Teaser from "~c/sections/Teaser"
 import About from "~c/sections/About"
+import Slider from "~c/Slider"
 import Contact from "~c/sections/Contact"
 import useLanguageKey from '~h/useLanguageKey'
 import { useDispatch, useSelector } from 'react-redux'
@@ -30,6 +31,7 @@ const HomePage = ({
     <Layout>
       <SEO title={metaTitle} description={metaDescription} />
       <Teaser />
+      <Slider />
       <About />
       <Contact />
     </Layout>

@@ -20,7 +20,7 @@ const checkName = (src) => {
   }
 }
 
-const Image = ({ src, className }) => {
+const Image = ({ src, className, style }) => {
   const images = useImagesQuery()
   const imageName = checkName(src).split(/\.(?=[^\.]+$)/)[0]
   return (
@@ -38,17 +38,20 @@ const Image = ({ src, className }) => {
             }
 
         className={className}
+        style={style}
     />
   )
 }
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
+  style: PropTypes.object.isRequired
 }
 
 Image.defaultProps = {
-  className: ''
+  className: '',
+  style: {}
 }
 
 export default Image

@@ -1,0 +1,39 @@
+.slider{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    &_cont-list{
+        width: 100%;
+        position: relative;
+        &_img{
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            // border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px 0;
+            box-sizing: border-box;
+            background-color: white;
+            transition: 0.5s opacity;
+            &-active{
+                position: relative;
+            }
+            &-cont{
+                display: flex;
+                flex-direction: row;
+            }
+            &-img{
+                position: relative;
+                transition: transform 0.5s, left 0.5s;
+            }
+        }
+    }
+}
+.btn-prex , .btn-nest{
+    position: relative;
+    z-index: 9999;
+}

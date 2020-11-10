@@ -18,8 +18,9 @@ function Navigation() {
   }
   const scrolTopMenu = useScrollTop( 50).scrollStarted
 
-  return ( 
-      <header className={"header mobile-none" + (scrolTopMenu ? 'active' : null)}>
+  return (
+    <MediaQuery minDeviceWidth={767.97}>
+      <header className={"header " + (scrolTopMenu ? 'active' : null)}>
         <div className="container">
           <nav className="navigation">
             <Link
@@ -40,7 +41,7 @@ function Navigation() {
           </nav>
         </div>
       </header>
-    
+    </MediaQuery>
   )
 }
 

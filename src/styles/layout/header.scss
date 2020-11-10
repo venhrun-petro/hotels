@@ -1,13 +1,19 @@
 .header{
-    position: relative;
     width: 100%;
-    background-color: $background-gray;
-    padding: 15px 0;
-    position: absolute;
+    background-color: transparent;
+    padding: 25px 0;
+    position: fixed;
     top: 0;
     z-index: 9999;
-    @include sm {
-        background-color: $background-gray4;
+    transition: 0.3s all;
+    background-color: $background-gray;
+ 
+    &.active{
+        background-color: $background-gray5;
+        padding: 10px 0;
+        & .navigation_menu{
+            align-items: center;
+        }
     }
 }
 .navigation{
@@ -34,7 +40,7 @@
             position: absolute;
             right: 0;
             top: 100%;
-            background-color: $background-gray3;
+            background-color: $background-gray5;
             padding: 47px 10px 38px;
             border-radius: 0px 0px 0px 20px;
         }
@@ -104,5 +110,43 @@
                 }
             }
         }
+    }
+}
+
+.slider_cont_list{
+    @include sm {
+        flex-direction: column!important;
+    }
+}
+.slider_cont_list_column{
+    @include sm {
+        padding-right: 0!important;
+    }
+}
+
+.slider-img-cont{
+    @include sm {
+       margin: 20px auto 0;
+    }
+}
+
+.slider_cont_list_img{
+    @include sm {
+        width: 100%!important;
+        max-width: 350px;
+    }
+}
+
+.mobile-block{
+    display: none;
+    .sm{
+        display: flex;
+    }
+}
+
+.mobile-none{
+    display: flex;
+    .sm{
+        display: none;
     }
 }

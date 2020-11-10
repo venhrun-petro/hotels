@@ -2,7 +2,7 @@ let path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `Hospitality-core`,
+    title: `Східниця Таксі`,
     description: `gatsby-hospitality-core`,
     author: `gatsby-hospitality-core`,
   },

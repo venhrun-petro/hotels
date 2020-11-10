@@ -1,37 +1,14 @@
- import React, { useState } from 'react'
- import Img from '~c/general/Image'
+import React, { useState } from 'react'
+import Img from '~c/general/Image'
+import { useStaticQuery, graphql } from 'gatsby'
+import Content from "~u/Content"
  
 function Slider() {
-
+  const content = Content(useSliderQuery())
   const [ opacityCount, setOpacityCount ] = useState(0);
   const [ activeCount, setactiveCount ] = useState(0);
 
-  const sliderData = {
-    items: [
-      {
-        value: "1",
-        className: "slider_cont-list_img",
-      },
-      {
-        value: "2",
-        className: "slider_cont-list_img",
-      },
-      {
-        value: "3",
-        className: "slider_cont-list_img",
-      },
-      {
-        value: "4",
-        className: "slider_cont-list_img",
-      },
-      {
-        value: "5",
-        className: "slider_cont-list_img",
-      }
-    ]
-  }
-
-  const slider = sliderData.items
+  const slider = content.items
   const step = 0.333333
   
   const opacity = (index) => 1 - (index * step) - opacityCount
@@ -72,54 +49,68 @@ function Slider() {
 
   return(
     <>
-        <h2>Slider</h2>
-        <div className="slider">
-          <div className="slider_cont-list">
-            {
-              slider.map(function(item, index){
+      <section className="slider" id="comments">
+        <div className="container">
+          <h2 className="sub-title" >Відгуки клієнтів</h2>
+          <div className="slider_cont">
+            { slider.map(function(item, index){
                   return(
-                    <div key={index} className={ "slider_cont-list_img " + (index == activeCount ? "slider_cont-list_img-active" : null)
+                    <div key={index} className={ "slider_cont_list " + (index == activeCount ? "slider_cont_list-active" : null)
                     } 
-                    style={styleItems(index)} >
-                      <div className="slider_cont-list_img-cont">
-                        <div >
-                          <h2>Title</h2>
-                          <p>{item.value}</p>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        </div>
-                        <Img style={styleImg(index)} className="slider_cont-list_img-img" src="gallery1.jpg" />
+                    style={styleItems(index)} > 
+                      <div className="slider_cont_list_column">
+                        <h3 className="slider_cont_list_column_title">{item.title}</h3>
+                        <p className="general_paragraph">{item.paragraph}</p>
                       </div>
-                    </div>
+                      <div className="slider-img-cont">
+                      <Img style={styleImg(index)} className="slider_cont_list_img" src={item.img} />
+                      </div>
+                    </div> 
                   )
               })
             }
           </div>
-          <div>
-            <button className={"btn-prex " + (chekItems(-1) ? "disabled" : "" )} onClick={slidePrev} disabled={ chekItems(-1)
+          <div className="slider_cont_button">
+            <button className={"slider_cont_button_btn " + (!chekItems(-1) ? "disabled" : "" )} onClick={slidePrev} disabled={ chekItems(-1)
               ? false
               : true
               }>
-                prev 
-                {
-                  chekItems(-1) ? 
-                  chekItems(-1).value
+                { chekItems(-1) ? 
+                  <Img className="slider_cont_button_btn_img" src={chekItems(-1).img} />
                   : 
                   null
                 }
+                <div className="slider_cont_button_btn_info">
+                  <p className="slider_cont_button_btn_info_text">PREV</p> 
+                  {
+                    chekItems(-1) ? 
+                    <p className="slider_cont_button_btn_info_text">{chekItems(-1).title}</p>
+                    : 
+                    null
+                  }
+                </div>
             </button>
-            <button className={"btn-nest" + (chekItems(+1) ? "disabled" : "" )} onClick={slideNext} disabled={ chekItems(+1)
+            <button className={"slider_cont_button_btn " + (!chekItems(+1) ? "disabled" : "" )} onClick={slideNext} disabled={ chekItems(+1)
               ? false
               : true
               }  >
-                next
-                { chekItems(+1) ? 
-                  chekItems(+1).value
-                  : 
-                   null
-                }
+                 { chekItems(+1) ? 
+                    <Img className="slider_cont_button_btn_img" src={chekItems(+1).img} />
+                    : 
+                    null
+                  }
+                <div className="slider_cont_button_btn_info">
+                  <p className="slider_cont_button_btn_info_text">NEXT</p> 
+                  { chekItems(+1) ? 
+                    <p className="slider_cont_button_btn_info_text">{chekItems(+1).title}</p>
+                    : 
+                    null
+                  }
+                </div>
             </button> 
           </div>
         </div>
+      </section>
     </>
   )
 }
@@ -128,3 +119,31 @@ function Slider() {
 export default Slider
 
 
+export const useSliderQuery = () =>
+  useStaticQuery(graphql`
+    query SliderQuery {
+      allFile(filter: {name: {eq: "content"}}) {
+        nodes {
+          childEnJson { 
+            items {
+              value
+              title
+              img
+              paragraph
+            }
+              
+          }
+          childUkJson { 
+            items {
+              value
+              title
+              img
+              paragraph
+            } 
+              
+          }
+          sourceInstanceName
+        }
+      }
+    }
+  `).allFile.nodes

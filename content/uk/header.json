@@ -2,15 +2,15 @@
   "logo": "/images/logo.svg",
   "list": [
     {
+      "item": "Відгуки",
+      "src": "comments"
+    },
+    {
       "item": "Про нас",
       "src": "about"
     },
     {
-      "item": "Послуги",
-      "src": "sevices"
-    },
-    {
-      "item": "Контакти та бронювання",
+      "item": "Контакти та замовлення",
       "src": "contact"
     }
   ]

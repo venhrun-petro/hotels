@@ -43,22 +43,13 @@ const About = () => {
       <Img className="about_img" src={content.aboutImage} />
       <div className="container-small">
         <div className="about_cont">
-          <h2 className="sub-title">ПРО НАС</h2>
+          <h2 className="sub-title">{content.aboutTitile}</h2>
           <p className="general_paragraph">
-            Готель
-            <strong> ВОЛТЕР </strong>
-            приймає гостей вже не один рік, тому наш досвід дозволяє нам з
-            першого знайомства зрозуміти потреби гостей та справдити
-            очікування від наших послуг. Привітний персонал цілодобово
-            зустрічає гостей, допоможе з бронюванням, поселенням, замовленням
-            інших послуг. У нас полюбляють зупинятись як індивідуальні
-            подорожуючі, сім’ї, так і туристичні групи, дитячі групи,
-            спортсмени та інші гості.
+            {content.aboutText}
           </p>
           <p className="general_paragraph">
             <strong>
-              Для нас немає нічого неможливого! Звертайтесь – завжди
-              усміхнемось і допоможемо!
+            {content.aboutTExtStrong}
             </strong>
           </p>
         </div>
@@ -83,37 +74,11 @@ const About = () => {
       <div className="container-small">
         <div className="about_cont_bottom">
           <p className="general_paragraph">
-            У готелі ВОЛТЕР 100 номерів різних категорій, кожен з яких
-            обладнаний ванною кімнатою з туалетом, душем або ванною, феном,
-            кондиціонером, телевізором та телефоном, холодильником, сучасними
-            меблями, комфортними ліжками і ортопедичними матрацами. Більшість
-            номерів є новими, мають площу від 26 м2, відповідають вимогам
-            чотиризіркових готелів.
+          {content.aboutTextBottom}
           </p>
         </div>
       </div>
-      <div className="container-small">
-        <div className="sevices" id="sevices">
-          <h2 className="sub-title">НАШІ ПОСЛУГИ</h2>
-          <div className="sevices_gallery">
-            {content.galleryServices.map((data, index) => {
-              return (
-                <div
-                  className="sevices_gallery_items"
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`galleryServices_img_${index}`}
-                >
-                  <Img
-                    className="sevices_gallery_items_img"
-                    src={data.img}
-                  />
-                  <p className="sevices_gallery_items_info">{data.info}</p>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
+      
     </section>
   )
 }
@@ -127,24 +92,24 @@ export const useAboutQuery = () =>
       allFile(filter: {name: {eq: "content"}}) {
         nodes {
           childEnJson {
-            aboutImage
+            aboutImage,
+            aboutTitile,
+            aboutText,
+            aboutTExtStrong,
+            aboutTextBottom,
             galleryAbout {
               img
-            }
-            galleryServices {
-              img
-              info
-            }
+            } 
           }
           childUkJson {
-            aboutImage
+            aboutImage,
+            aboutTitile,
+            aboutText,
+            aboutTExtStrong,
+            aboutTextBottom,
             galleryAbout {
               img
-            }
-            galleryServices {
-              img
-              info
-            }
+            } 
           }
           sourceInstanceName
         }

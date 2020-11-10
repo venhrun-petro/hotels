@@ -25,12 +25,12 @@ export default function Form2() {
       guest: guestName
     };
 
-    fetch('/',{
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'Volter', ...discordData })
+    // fetch('/',{
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   body: encode({ 'form-name': 'Volter', ...discordData })
       
-    })
+    // })
     setSubmit(true);
   }
 
@@ -43,24 +43,15 @@ export default function Form2() {
               <label className="teaser_cont_form-normal_block_data">
                 <span>
                 <Img src={content.dataImage} />
-                  Дата заїзду
+                {content.dataName}
                 </span>
                 <div className="teaser_cont_form-normal_block_data_outside">
                   <input
                     name="number"
-                    type="date" 
+                    type="text" 
+                    placeholder="Name"
                     {...bindFirstName}
-                  />
-                  <p>
-                    {
-                      firstName ? 
-                          firstName.split('-').reverse().map(function(el, index) {
-                            return <span key={index} >{el}</span>
-                          })
-                          :
-                          dataContent
-                      }
-                  </p>
+                  /> 
                 </div>
               </label>
             </div>
@@ -68,52 +59,27 @@ export default function Form2() {
               <label className="teaser_cont_form-normal_block_data">
                 <span>
                   <Img src={content.dataImage} />
-                  Дата виїзду
+                  {content.dataPhone}
                 </span>
                 <div className="teaser_cont_form-normal_block_data_outside">
                   <input
-                    type="date"
+                    type="text"
                     name="months"
+                    placeholder="Phone"
                     {...bindLastName}
-                  />
-                  <p>
-                    {
-                      lastName ? 
-                          lastName.split('-').reverse().map(function(el, index) {
-                                return <span key={index} >{el}</span>
-                          })
-                          :
-                          dataContent
-                      }
-                  </p>
+                  /> 
                 </div>
               </label>
-            </div>
-            <div className="teaser_cont_form-normal_block">
-              <label className="teaser_cont_form-normal_block_data">
-                <span>
-                  <Img src={content.guestsImage} />
-                  Гості
-                </span>
-                <div className="teaser_cont_form-normal_block_data_outside">
-                  <input
-                    type="number"
-                    name="guest"
-                    {...bindGuest}
-                    placeholder="01"
-                  />
-                </div>
-              </label>
-            </div>
+            </div> 
 
             <button className="general-button" type="submit">
-                Знайти номер
+              {content.dataButton}
             </button>
             <input type="hidden" name="form-name" value="Volter" />
         </form>
       :
         <div className="teaser_cont_thanks">
-          <h2 className="teaser_cont_thanks_title">Thanks You!!!</h2>
+          <h2 className="teaser_cont_thanks_title">{content.dataThanks}</h2>
         </div>
      }
     </>
@@ -128,11 +94,17 @@ useStaticQuery(graphql`
       nodes {
         childEnJson {
           dataImage
-          guestsImage
+          dataThanks
+          dataName
+          dataPhone
+          dataButton
         }
         childUkJson {
           dataImage
-          guestsImage
+          dataThanks
+          dataName
+          dataPhone
+          dataButton
         }
         sourceInstanceName
       }

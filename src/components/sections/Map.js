@@ -23,15 +23,14 @@ export class MapCont extends React.Component {
     } 
     console.log( this.props.lat,  'lat')
     return (
-      <Map
-        // eslint-disable-next-line react/prop-types
+      <Map 
         google={this.props.google}
         zoom={14}
         style={style}
         initialCenter={{
           lat: this.props.lat,
           lng: this.props.lng
-        }}
+        }} 
         onClick={this.onMapClicked}
       >
         <Marker

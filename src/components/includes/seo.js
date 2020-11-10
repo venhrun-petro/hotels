@@ -8,32 +8,34 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from 'gatsby'
+import Content from "~u/Content"
 
 function SEO({ description, lang, meta, keywords, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+  // const { site } = useStaticQuery(
+  //   graphql`
+  //     query {
+  //       site {
+  //         siteMetadata {
+  //           title
+  //           description
+  //           author
+  //         }
+  //       }
+  //     }
+  //   `
+  // )
 
-  const metaDescription = description || site.siteMetadata.description
-
+  const content = Content(useSeoQuery())
+  const metaDescription = content.seoDescription
+  
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${content.seoTitle}`}
       meta={[
         {
           name: `description`,
@@ -41,7 +43,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: content.seoTitle,
         },
         {
           property: `og:description`,
@@ -57,11 +59,11 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: content.seoTitle,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: content.seoTitle,
         },
         {
           name: `twitter:description`,
@@ -72,7 +74,7 @@ function SEO({ description, lang, meta, keywords, title }) {
           keywords.length > 0
             ? {
                 name: `keywords`,
-                content: keywords.join(`, `),
+                content: content.seoKeywords,
               }
             : []
         )
@@ -97,3 +99,26 @@ SEO.propTypes = {
 }
 
 export default SEO
+
+
+
+export const useSeoQuery = () =>
+  useStaticQuery(graphql`
+    query SeoQuery {
+      allFile(filter: {name: {eq: "content"}}) {
+        nodes {
+          childEnJson { 
+            seoTitle
+            seoDescription
+            seoKeywords
+          }
+          childUkJson { 
+            seoTitle
+            seoDescription
+            seoKeywords
+          }
+          sourceInstanceName
+        }
+      }
+    }
+  `).allFile.nodes

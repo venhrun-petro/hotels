@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: thomaswang/gatsby-personal-starter-blog
+
+media_folder: content/assets
+public_folder: ../assets
+
+collections:
+  - name: "Home Uk"
+    label: "Funnel"
+    create: true
+    files:
+      - label: "Uk"
+        name: "Uk"
+        file: "content/uk/header.json"
+        fields:
+          - {label: "Logo", name: "logo", widget: image}
+          - label: List
+            name: list
+            widget: list
+            fields:
+              - {label: "List Name", name: "item", widget: string}
+              - {label: "List Image", name: "src", widget: image}
